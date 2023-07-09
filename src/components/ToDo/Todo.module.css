@@ -1,0 +1,34 @@
+.listItem {
+  display: inline-block;
+  min-width: 350px;
+  min-height: 30px;
+  margin: 15px;
+  border: solid 2px gray;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.listItemsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.inputField {
+  margin: 30px;
+  width: 300px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  margin-left: 10px !important;
+  width: 100px;
+  height: 40px;
+}
+.btnContainer {
+  margin: 20px;
+  margin-bottom: 40px;
+}
