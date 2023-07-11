@@ -1,24 +1,55 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/HighlightOffRounded";
 import Style from "./Todo.module.css";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 
-const Todo = ({ item, index, onDelete }) => {
+const Todo = ({ item, index, onDelete, onEditSubmit }) => {
+  const [editMode, setEditMode] = useState(false);
+  const labelRef = useRef();
+
+  const onEdit = () => {
+    setEditMode(true);
+    setTimeout(() => {
+      labelRef.current?.focus();
+    });
+  };
   return (
     <Box
       className={Style.listItem}
       id={index}
       display="flex"
       justifyContent="space-between"
+      alignItems="center"
     >
-      {`${index + 1}. ${item}`}
+      <Box display="flex">
+        <Typography
+          sx={{
+            height: "fit-content",
+          }}
+        >
+          {index + 1}.
+        </Typography>
+        <Typography
+          ref={labelRef}
+          contentEditable={editMode}
+          onBlur={() => {
+            onEditSubmit(labelRef.current.innerText, index);
+            console.log(labelRef.current.innerText);
+          }}
+          sx={{
+            height: "fit-content",
+          }}
+        >
+          {item}
+        </Typography>
+      </Box>
       <Box>
-        <IconButton>
+        <IconButton onClick={onEdit}>
           <EditIcon />
         </IconButton>
-        <IconButton>
-          <DeleteIcon onClick={onDelete} color="error" />
+        <IconButton onClick={() => onDelete(index)}>
+          <DeleteIcon color="error" />
         </IconButton>
       </Box>
     </Box>

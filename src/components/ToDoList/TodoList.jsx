@@ -8,8 +8,12 @@ export default function TodoList() {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
 
-  function removeIn(index) {
-    setTodos(todos.filter((i) => i !== index));
+  function removeTodo(index) {
+    setTodos(todos.filter((_, i) => i !== index));
+  }
+
+  function onEditSubmit(text, index) {
+    setTodos(todos.map((todo, i) => (i === index ? text : todo)));
   }
 
   const handleChange = (e) => {
@@ -31,6 +35,7 @@ export default function TodoList() {
         onChange={handleChange}
         value={inputValue}
       />
+
       <div className={Style.btnContainer}>
         <Button
           className={Style.btn}
@@ -45,7 +50,8 @@ export default function TodoList() {
       <div className={Style.listItemsWrapper}>
         {todos.map((item, index) => (
           <Todo
-            onDelete={funkciavorjnjumatodon}
+            onDelete={removeTodo}
+            onEditSubmit={onEditSubmit}
             key={item}
             item={item}
             index={index}
