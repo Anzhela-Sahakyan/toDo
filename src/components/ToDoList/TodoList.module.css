@@ -1,0 +1,23 @@
+.listItemsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.inputField {
+  margin: 30px;
+  width: 300px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  margin-left: 10px !important;
+  width: 100px;
+  height: 40px;
+}
+.btnContainer {
+  margin: 20px;
+  margin-bottom: 40px;
+}
